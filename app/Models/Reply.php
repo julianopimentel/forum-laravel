@@ -11,9 +11,11 @@ use App\Traits\HasTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Contracts\Auditable;
 
-final class Reply extends Model
+final class Reply extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     use HasLikes;
     use HasAuthor;
     use HasFactory;

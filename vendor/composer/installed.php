@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '05ce6f49c7acdc6d073a3d3828548b7f0d21b6d9',
+        'reference' => '25b2f61663412cc095f29c17e7fc4ac4855d0e90',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -517,7 +517,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '05ce6f49c7acdc6d073a3d3828548b7f0d21b6d9',
+            'reference' => '25b2f61663412cc095f29c17e7fc4ac4855d0e90',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -704,6 +704,15 @@
             'install_path' => __DIR__ . '/../opis/closure',
             'aliases' => array(),
             'reference' => '3d81e4309d2a927abbe66df935f4bb60082805ad',
+            'dev_requirement' => false,
+        ),
+        'owen-it/laravel-auditing' => array(
+            'pretty_version' => 'v13.1.0',
+            'version' => '13.1.0.0',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../owen-it/laravel-auditing',
+            'aliases' => array(),
+            'reference' => '216630ea7f1b091444ca659e60119f35664bd4eb',
             'dev_requirement' => false,
         ),
         'paragonie/constant_time_encoding' => array(

@@ -17,9 +17,11 @@ use CyrildeWit\EloquentViewable\InteractsWithViews;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Thread extends Model implements ReplyAble, SubscriptionAble, Viewable
+class Thread extends Model implements ReplyAble, SubscriptionAble, Viewable, Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     use HasTags;
     use HasLikes;
     use HasAuthor;
