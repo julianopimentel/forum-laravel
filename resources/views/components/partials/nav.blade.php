@@ -19,7 +19,12 @@
                 <div class="p-2 text-white bg-blue-200 border rounded-l">
                     <x-heroicon-o-search class="w-6 h-6" />
                 </div>
-                <input type="search" name="" id="" class="w-full border-none rounded-r shadow-inner bg-blue-50 focus:ring-blue-200" placeholder="Search Topics">
+                <form action="/threads" method="GET" class="w-full border-none rounded-r shadow-inner bg-blue-50 focus:ring-blue-200">
+                <input type="search" name="search" id="" class="w-full border-none rounded-r shadow-inner bg-blue-50 focus:ring-blue-200" placeholder="Buscar por assunto">
+            </form>
+                
+                    
+                
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

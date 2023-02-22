@@ -2,7 +2,8 @@
     <main class="wrapper">
         <section class="grid grid-cols-4 gap-8 mt-8">
 
-            <x-partials.sidenav />
+            <x-partials.sidenav :categories="$categories" />
+
 
             <div class="flex flex-col col-span-3 gap-y-4">
                 @foreach ($threads as $thread)

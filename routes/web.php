@@ -25,7 +25,7 @@ require 'admin.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'threads', 'as' => 'threads.'], function () {
+Route::group(['prefix' => 'forum', 'as' => 'threads.'], function () {
     /* Name: Threads
      * Url: /threads/*
      * Route: threads.*

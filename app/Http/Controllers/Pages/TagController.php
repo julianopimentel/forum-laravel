@@ -13,6 +13,7 @@ class TagController extends Controller
     {
         return view('pages.tags.index', [
             'threads'       => Thread::ForTag($tag->slug())->paginate(10),
+            'categories'    => Category::all(),
         ]);
     }
 }

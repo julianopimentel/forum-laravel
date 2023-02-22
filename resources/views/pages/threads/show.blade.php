@@ -1,13 +1,13 @@
 <x-guest-layout>
     <main class="grid grid-cols-4 gap-8 mt-8 wrapper">
 
-        <x-partials.sidenav :thread="$thread" />
+        <x-partials.sidenav :thread="$thread" :categories="$categories" />
 
         <section class="flex flex-col col-span-3 gap-y-4">
 
             <x-alerts.main />
 
-            <small class="text-sm text-gray-400">Threads>{{ $category->name() }}>{{ $thread->title() }}</small>
+            <small class="text-sm text-gray-400">Tópico > {{ $category->name() }} > {{ $thread->title() }}</small>
 
             <article class="p-5 bg-white shadow">
                 <div class="relative grid grid-cols-8">
@@ -44,7 +44,7 @@
                             {{-- Date Posted --}}
                             <div class="flex items-center text-xs text-gray-500">
                                 <x-heroicon-o-clock class="w-4 h-4 mr-1" />
-                                Posted: {{ $thread->created_at->diffForHumans() }}
+                                Postado: {{ $thread->created_at->diffForHumans() }}
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                         <div class="flex space-x-2">
                             @can(App\Policies\ThreadPolicy::UPDATE, $thread)
                             <x-links.secondary href="{{ route('threads.edit', $thread->slug()) }}">
-                                Edit
+                                Editar
                             </x-links.secondary>
                             @endcan
 
@@ -69,7 +69,7 @@
 
             {{-- Replies --}}
             <div class="mt-6 space-y-5">
-                <h2 class="mb-0 text-sm font-bold uppercase">Replies</h2>
+                <h2 class="mb-0 text-sm font-bold uppercase">Respostas</h2>
                 <hr>
                 @foreach($thread->replies() as $reply)
                 <livewire:reply.update :reply="$reply" :wire:key="$reply->id()" />
@@ -78,7 +78,7 @@
 
             @auth
             <div class="p-5 space-y-4 bg-white shadow">
-                <h2 class="text-gray-500">Post a reply</h2>
+                <h2 class="text-gray-500">Poste sua resposta</h2>
                 <x-form action="{{ route('replies.store') }}">
                     <div>
                         <input type="text" name="body" class="w-full bg-gray-200 border-none shadow-inner focus:ring-blue-400" />
@@ -94,14 +94,14 @@
                     <div class="grid mt-4">
                         {{-- Button --}}
                         <x-buttons.primary class="justify-self-end">
-                            {{ __('Post') }}
+                            {{ __('Postar') }}
                         </x-buttons.primary>
                     </div>
                 </x-form>
             </div>
             @else
             <div class="flex justify-between p-4 text-gray-700 bg-blue-200 rounded">
-                <h2>Please login to leave a comment</h2>
+                <h2>Por favor, faça o login para deixar sua resposta.</h2>
                 <a href="{{ route('login') }}">Login</a>
             </div>
             @endauth

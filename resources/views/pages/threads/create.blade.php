@@ -1,10 +1,11 @@
 <x-guest-layout>
     <main class="grid grid-cols-4 gap-8 mt-8 wrapper">
 
-        <x-partials.sidenav />
+        <x-partials.sidenav :categories="$categories" />
+
 
         <section class="flex flex-col col-span-3 gap-y-4">
-            <small class="text-sm text-gray-400">discussion>create</small>
+            <small class="text-sm text-gray-400">Tópico > Criar</small>
 
             <article class="p-5 bg-white shadow">
                 <div class="w-full">
@@ -16,16 +17,16 @@
 
                                 {{-- Title --}}
                                 <div>
-                                    <x-form.label for="title" value="{{ __('Title') }}" />
+                                    <x-form.label for="title" value="{{ __('Titulo') }}" />
                                     <x-form.input id="title" class="block w-full mt-1" type="text" name="title" :value="old('title')" autofocus />
                                     <x-form.error for="title" />
                                 </div>
 
                                 {{-- Category --}}
                                 <div>
-                                    <x-form.label for="category" value="{{ __('Category') }}" />
+                                    <x-form.label for="category" value="{{ __('Categoria') }}" />
                                     <select name="category" id="category" class="w-full text-sm border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                        <option value="">Select Category</option>
+                                        <option value="">Selecionar categoria</option>
                                         @foreach ($categories as $category)
                                         <option value="{{ $category->id() }}">{{ $category->name() }}</option>
                                         @endforeach
@@ -46,14 +47,14 @@
 
                                 {{-- Body --}}
                                 <div>
-                                    <x-form.label for="body" value="{{ __('Description') }}" />
+                                    <x-form.label for="body" value="{{ __('Descrição') }}" />
                                     <x-trix name="body" id="body" styling="shadow-inner bg-gray-100 h-56" />
                                     <x-form.error for="body" />
                                 </div>
 
                                 {{-- Button --}}
                                 <x-buttons.primary>
-                                    {{ __('Create') }}
+                                    {{ __('Salvar') }}
                                 </x-buttons.primary>
                         </x-form>
                     </div>

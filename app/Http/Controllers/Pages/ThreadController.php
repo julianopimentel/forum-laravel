@@ -26,10 +26,17 @@ class ThreadController extends Controller
         return $this->middleware([Authenticate::class, EnsureEmailIsVerified::class])->except(['index', 'show']);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $threads = Thread::orderBy('id', 'desc');
+
+        if (request('search')) {
+            $threads->where('title', 'Like', '%' . request('search') . '%');
+        }
+
         return view('pages.threads.index', [
-            'threads'       => Thread::orderBy('id', 'desc')->paginate(10),
+            'threads' => $threads->paginate(10),
+            'categories'    => Category::all(),
         ]);
     }
 
@@ -52,11 +59,13 @@ class ThreadController extends Controller
     {
         $expireAt = now()->addHours(12);
 
+        $categories = Category::all();
+
         views($thread)
             ->cooldown($expireAt)
             ->record();
 
-        return view('pages.threads.show', compact('thread', 'category'));
+        return view('pages.threads.show', compact('thread', 'category', 'categories'));
     }
 
     public function edit(Thread $thread)

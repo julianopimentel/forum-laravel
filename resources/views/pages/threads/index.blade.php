@@ -2,7 +2,7 @@
     <main class="wrapper">
         <section class="grid grid-cols-4 gap-8 mt-8">
             {{-- Sidenavbar --}}
-            <x-partials.sidenav />
+            <x-partials.sidenav :categories="$categories" />
 
             <div class="flex flex-col col-span-3 gap-y-4">
                 {{-- Alerts --}}
@@ -16,6 +16,10 @@
                 <div class="mt-8">
                     {{ $threads->render() }}
                 </div>
+
+                @if ($threads->isEmpty())
+                    Nenhum tópico encontrado, tente novamente!
+                @endif
             </div>
         </section>
     </main>

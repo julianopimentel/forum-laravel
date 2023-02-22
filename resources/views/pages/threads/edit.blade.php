@@ -1,7 +1,7 @@
 <x-guest-layout>
     <main class="grid grid-cols-4 gap-8 mt-8 wrapper">
 
-        <x-partials.sidenav />
+        <x-partials.sidenav :categories="$categories" />
 
         <section class="flex flex-col col-span-3 gap-y-4">
             <small class="text-sm text-gray-400">threads>{{ $thread->title() }}>edit</small>
@@ -59,7 +59,7 @@
 
                                 {{-- Button --}}
                                 <x-buttons.primary>
-                                    {{ __('Update') }}
+                                    {{ __('Salvar') }}
                                 </x-buttons.primary>
                         </x-form>
                     </div>
