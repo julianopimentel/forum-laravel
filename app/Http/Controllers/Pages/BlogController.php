@@ -31,7 +31,7 @@ class BlogController extends Controller
             $threads->where('title', 'Like', '%' . request('search') . '%');
         }
 
-        return view('pages.threads.index', [
+        return view('home.blog.blog', [
             'threads' => $threads->paginate(10),
             'categories'    => Category::all(),
         ]);
@@ -39,7 +39,7 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('pages.threads.create', [
+        return view('home.blog.post', [
             'categories'    => Category::all(),
             'tags'          => Tag::all(),
         ]);
@@ -52,17 +52,17 @@ class BlogController extends Controller
         return redirect()->route('threads.index')->with('success', 'Thread created!');
     }
 
-    public function show(Category $category, Blog $thread)
+    public function show(Category $category, Blog $blog)
     {
         $expireAt = now()->addHours(12);
 
         $categories = Category::all();
 
-        views($thread)
+        views($blog)
             ->cooldown($expireAt)
             ->record();
 
-        return view('pages.threads.show', compact('thread', 'category', 'categories'));
+        return view('home.blog.blogShow', compact('blog', 'category', 'categories'));
     }
 
     public function edit(Blog $thread)

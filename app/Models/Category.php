@@ -20,6 +20,10 @@ class Category extends Model implements Auditable
     {
         return $this->hasMany(Thread::class);
     }
+    public function blogs(): HasMany
+    {
+        return $this->hasMany(Blog::class);
+    }
 
     public function id(): int
     {

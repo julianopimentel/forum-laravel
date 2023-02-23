@@ -16,8 +16,8 @@ class HomeController extends Controller
     public function index()
     {
 
-        $newblog = Blog::limit(5)->get();;
-        $newtopico = Thread::limit(3)->get();;
+        $newblog = Blog::orderBy('id', 'desc')->limit(4)->get();;
+        $newtopico = Thread::orderBy('id', 'desc')->limit(3)->get();;
 
         //contagem no site
         $topics = Thread::count();

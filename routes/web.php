@@ -9,6 +9,7 @@ use App\Http\Controllers\Pages\FollowController;
 use App\Http\Controllers\Pages\ThreadController;
 use App\Http\Controllers\Pages\ProfileController;
 use App\Http\Controllers\Dashboard\NotificationController;
+use App\Http\Controllers\Pages\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,26 @@ Route::group(['prefix' => 'forum', 'as' => 'threads.'], function () {
 
     Route::get('/{category:slug}/{thread:slug}/subscribe', [ThreadController::class, 'subscribe'])->name('subscribe');
     Route::get('/{category:slug}/{thread:slug}/unsubscribe', [ThreadController::class, 'unsubscribe'])->name('unsubscribe');
+
+    Route::group(['as' => 'tags.'], function () {
+        Route::get('/{tag:slug}', [TagController::class, 'index'])->name('index');
+    });
+});
+
+Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+    /* Name: Threads
+     * Url: /threads/*
+     * Route: threads.*
+     */
+    Route::get('/', [BlogController::class, 'index'])->name('index');
+    Route::get('create', [BlogController::class, 'create'])->name('create');
+    Route::post('/', [BlogController::class, 'store'])->name('store');
+    Route::get('/{blog:slug}/edit', [BlogController::class, 'edit'])->name('edit');
+    Route::post('/{blog:slug}', [BlogController::class, 'update'])->name('update');
+    Route::get('/{category:slug}/{blog:slug}', [BlogController::class, 'show'])->name('show');
+
+    Route::get('/{category:slug}/{blog:slug}/subscribe', [BlogController::class, 'subscribe'])->name('subscribe');
+    Route::get('/{category:slug}/{blog:slug}/unsubscribe', [BlogController::class, 'unsubscribe'])->name('unsubscribe');
 
     Route::group(['as' => 'tags.'], function () {
         Route::get('/{tag:slug}', [TagController::class, 'index'])->name('index');
