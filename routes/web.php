@@ -58,11 +58,8 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
     Route::post('/{blog:slug}', [BlogController::class, 'update'])->name('update');
     Route::get('/{category:slug}/{blog:slug}', [BlogController::class, 'show'])->name('show');
 
-    Route::get('/{category:slug}/{blog:slug}/subscribe', [BlogController::class, 'subscribe'])->name('subscribe');
-    Route::get('/{category:slug}/{blog:slug}/unsubscribe', [BlogController::class, 'unsubscribe'])->name('unsubscribe');
-
     Route::group(['as' => 'tags.'], function () {
-        Route::get('/{tag:slug}', [TagController::class, 'index'])->name('index');
+        Route::get('/{tag:slug}', [TagController::class, 'indexForum'])->name('indexForum');
     });
 });
 

@@ -4684,7 +4684,7 @@
             <div class="w-full lg:w-1/3">
                 <div class="h-full flex flex-1 flex-col grow place-content-between">
                     <div class="break-words">
-                        <a href="https://laravel.io/articles/collectjs-a-laravel-like-syntax-for-javascript-arrays">
+                        <a href="{{ route('blog.show', [$newblog->category->slug(), $newblog->slug()]) }}">
                             <div class="w-full h-72 mb-6 rounded-lg bg-center bg-cover bg-gray-800"
                                 style="background-image: url(https://source.unsplash.com/Ae7pSsfzEHs/400x300);"></div>
                         </a>
@@ -4694,20 +4694,20 @@
                         </span>
 
                         <h3 class="text-gray-900 text-3xl font-bold leading-10 mb-2">
-                            <a href="https://laravel.io/articles/collectjs-a-laravel-like-syntax-for-javascript-arrays"
+                            <a href="{{ route('blog.show', [$newblog->category->slug(), $newblog->slug()]) }}"
                                 class="hover:underline">
                                 {{ $newblog->title() }}
                             </a>
                         </h3>
 
                         <p class="text-gray-800 leading-7 mb-3">
-                            {{ $newblog->body() }}
+                            {{ $newblog->excerpt() }}
                         </p>
                     </div>
 
                     <a class="flex items-center text-base text-gray-300 items-end py-2"
-                        href="https://laravel.io/articles/collectjs-a-laravel-like-syntax-for-javascript-arrays">
-                        <span class="text-gray-700 mr-1 hover:text-gray-500">Read article</span>
+                        href="{{ route('blog.show', [$newblog->category->slug(), $newblog->slug()]) }}">
+                        <span class="text-gray-700 mr-1 hover:text-gray-500">Continuar lendo</span>
                         <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                             fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd"
@@ -4825,7 +4825,7 @@ Ao se juntar à nossa plataforma, você pode dar uma olhada nos últimos tópico
                                 </h3>
 
                                 <p class="text-gray-800 text-base leading-7 mb-3">
-                                    {!! $newtopico->body() !!}
+                                    {!! $newtopico->excerpt() !!}
                                 </p>
                             </div>
 

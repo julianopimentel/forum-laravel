@@ -40,12 +40,11 @@
 
                 </div>
             </div>
-        </div>
-    </div>
-    {{-- Pagination --}}
-    <div class="mt-8">
-        {{ $threads->paginate() }}
-    </div>
+            {{ $threads->paginate() }}
+
+             
+            </div>
+            </div>
     </div>
     </div>
     </div>

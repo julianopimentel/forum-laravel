@@ -4,12 +4,10 @@ namespace App\Models;
 
 use App\Traits\HasTags;
 use App\Traits\HasLikes;
-use App\Traits\HasViews;
 use App\Models\ReplyAble;
 use App\Traits\HasAuthor;
 use App\Traits\HasReplies;
 use Illuminate\Support\Str;
-use Laravel\Jetstream\HasTeams;
 use App\Traits\HasSubscriptions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;

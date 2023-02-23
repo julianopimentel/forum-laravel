@@ -131,7 +131,7 @@
                         <div x-data="{}" x-init="$nextTick(function() { highlightCode($el); })"
                             class="prose prose-lg text-gray-800 prose-lio">
                             <div>
-                                {{ $blog->excerpt() }}
+                                {{ $blog->body() }}
                             </div>
                         </div>
                     </div>

@@ -2106,7 +2106,7 @@ select {
 }
 .border-lio-500 {
   --tw-border-opacity: 1;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity));
+  border-color: rgb(2 43 98 / var(--tw-border-opacity));
 }
 .border-red-200 {
   --tw-border-opacity: 1;
@@ -2137,7 +2137,7 @@ select {
 }
 .bg-lio-500 {
   --tw-bg-opacity: 1;
-  background-color: rgb(24 188 156 / var(--tw-bg-opacity));
+  background-color: rgb(2 43 98 / var(--tw-bg-opacity));
 }
 .bg-gray-700 {
   --tw-bg-opacity: 1;
@@ -2177,7 +2177,7 @@ select {
 }
 .bg-gray-900 {
   --tw-bg-opacity: 1;
-  background-color: rgb(52 54 54 / var(--tw-bg-opacity));
+  background-color: rgb(2 43 98 / var(--tw-bg-opacity));
 }
 .bg-red-100 {
   --tw-bg-opacity: 1;
@@ -2539,7 +2539,7 @@ select {
 }
 .text-lio-500 {
   --tw-text-opacity: 1;
-  color: rgb(24 188 156 / var(--tw-text-opacity));
+  color: rgb(2 43 98 / var(--tw-text-opacity));
 }
 .text-twitter {
   --tw-text-opacity: 1;
@@ -2797,7 +2797,7 @@ select {
   margin-left: 1rem;
   border-left-width: 4px;
   --tw-border-opacity: 1;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity));
+  border-color: rgb(2 43 98 / var(--tw-border-opacity));
   padding-left: 1rem;
 }
 .article a {
@@ -2826,7 +2826,7 @@ select {
 }
 .button-primary {
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(24 188 156 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(2 43 98 / var(--tw-bg-opacity)) !important;
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
@@ -2897,7 +2897,7 @@ span.label:hover {
 }
 .label-primary {
   --tw-bg-opacity: 1;
-  background-color: rgb(24 188 156 / var(--tw-bg-opacity));
+  background-color: rgb(2 43 98 / var(--tw-bg-opacity));
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
@@ -3073,7 +3073,7 @@ svg .primary {
 svg .secondary {
   fill: currentColor;
   --tw-text-opacity: 1;
-  color: rgb(24 188 156 / var(--tw-text-opacity));
+  color: rgb(2 43 98 / var(--tw-text-opacity));
 }
 [x-cloak] {
   display: none;
@@ -3085,13 +3085,13 @@ svg .secondary {
 }
 .nav a:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity));
+  border-color: rgb(2 43 98 / var(--tw-border-opacity));
   --tw-text-opacity: 1;
   color: rgb(99 99 99 / var(--tw-text-opacity));
 }
 .nav a.active {
   --tw-border-opacity: 1;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity));
+  border-color: rgb(2 43 98 / var(--tw-border-opacity));
   --tw-text-opacity: 1;
   color: rgb(52 54 54 / var(--tw-text-opacity));
 }
@@ -3193,9 +3193,9 @@ svg .secondary {
 }
 .choices__item.choices__item--selectable {
   --tw-border-opacity: 1 !important;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity)) !important;
+  border-color: rgb(2 43 98 / var(--tw-border-opacity)) !important;
   --tw-bg-opacity: 1 !important;
-  background-color: rgb(24 188 156 / var(--tw-bg-opacity)) !important;
+  background-color: rgb(2 43 98 / var(--tw-bg-opacity)) !important;
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
@@ -3231,7 +3231,7 @@ svg .secondary {
 }
 .hover\:border-lio-500:hover {
   --tw-border-opacity: 1;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity));
+  border-color: rgb(2 43 98 / var(--tw-border-opacity));
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
@@ -3286,7 +3286,7 @@ svg .secondary {
 }
 .hover\:text-lio-500:hover {
   --tw-text-opacity: 1;
-  color: rgb(24 188 156 / var(--tw-text-opacity));
+  color: rgb(2 43 98 / var(--tw-text-opacity));
 }
 .hover\:text-gray-200:hover {
   --tw-text-opacity: 1;
@@ -3346,7 +3346,7 @@ svg .secondary {
 }
 .focus\:border-lio-500:focus {
   --tw-border-opacity: 1;
-  border-color: rgb(24 188 156 / var(--tw-border-opacity));
+  border-color: rgb(2 43 98 / var(--tw-border-opacity));
 }
 .focus\:border-red-500:focus {
   --tw-border-opacity: 1;
@@ -3362,7 +3362,7 @@ svg .secondary {
 }
 .focus\:text-lio-500:focus {
   --tw-text-opacity: 1;
-  color: rgb(24 188 156 / var(--tw-text-opacity));
+  color: rgb(2 43 98 / var(--tw-text-opacity));
 }
 .focus\:text-gray-900:focus {
   --tw-text-opacity: 1;
@@ -3394,7 +3394,7 @@ svg .secondary {
 }
 .focus\:ring-lio-500:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(24 188 156 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(2 43 98 / var(--tw-ring-opacity));
 }
 .focus\:ring-red-500:focus {
   --tw-ring-opacity: 1;

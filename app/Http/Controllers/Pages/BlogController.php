@@ -12,9 +12,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\BlogStoreRequest;
 use App\Jobs\BlogThread;
-use App\Jobs\SubscribeToSubscriptionAble;
-use App\Jobs\UnsubscribeFromSubscriptionAble;
-use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class BlogController extends Controller
 {
@@ -28,7 +25,7 @@ class BlogController extends Controller
         $threads = Blog::orderBy('id', 'desc');
 
         if (request('search')) {
-            $threads->where('title', 'Like', '%' . request('search') . '%');
+            $threads->category->where('title', 'Like', '%' . request('search') . '%');
         }
 
         return view('home.blog.blog', [
@@ -90,23 +87,4 @@ class BlogController extends Controller
         return redirect()->route('threads.index')->with('success', 'Thread Updated!');
     }
 
-    public function subscribe(Request $request, Category $category, Blog $thread)
-    {
-        $this->authorize(ThreadPolicy::SUBSCRIBE, $thread);
-
-        $this->dispatchSync(new SubscribeToSubscriptionAble($request->user(), $thread));
-
-        return redirect()->route('threads.show', [$thread->category->slug(), $thread->slug()])
-            ->with('success', 'You have been subscribed to this thread');
-    }
-
-    public function unsubscribe(Request $request, Category $category, Blog $thread)
-    {
-        $this->authorize(ThreadPolicy::UNSUBSCRIBE, $thread);
-
-        $this->dispatchSync(new UnsubscribeFromSubscriptionAble($request->user(), $thread));
-
-        return redirect()->route('threads.show', [$thread->category->slug(), $thread->slug()])
-            ->with('success', 'You have been unsubscribed from this thread');
-    }
 }
