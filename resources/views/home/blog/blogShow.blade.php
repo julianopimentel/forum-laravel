@@ -8,8 +8,7 @@
                 <div class="container mx-auto">
                     <div class="px-4 lg:px-0 lg:mx-48">
                         <div class="flex items-center justify-between pt-6 mb-28">
-                            <a href="/blog/"
-                                class="hidden items-center text-base text-white hover:underline lg:flex">
+                            <a href="/blog/" class="hidden items-center text-base text-white hover:underline lg:flex">
                                 <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                     fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
@@ -27,28 +26,29 @@
                                     class="text-sm text-white bg-transparent border border-white rounded py-1.5 px-3 leading-none hover:underline">
                                     {{ $blog->category->name() }}
 
-                                @foreach($blog->tags() as $tag)
-                                <a href="{{ route('threads.tags.index', $tag->slug()) }}" class="p-1 text-xs text-white bg-green-400 rounded">
-                                    {{ $tag->name() }}
-                                </a>
-                                @endforeach
+                                    @foreach ($blog->tags() as $tag)
+                                        <a href="{{ route('threads.tags.index', $tag->slug()) }}"
+                                            class="p-1 text-xs text-white bg-green-400 rounded">
+                                            {{ $tag->name() }}
+                                        </a>
+                                    @endforeach
 
-                            </span>
+                                </span>
                             </a>
                         </div>
                         <h1 class="text-white text-5xl font-bold mb-4 break-words">
-                           {{ $blog->title }}
+                            {{ $blog->title }}
                         </h1>
                         <div class="flex flex-col gap-y-2 text-white pb-4 lg:pb-12 lg:flex-row lg:items-center">
                             <div class="flex items-center">
-                                <a href="/profile/user/{{$blog->author()->username}}">
+                                <a href="/profile/user/{{ $blog->author()->username }}">
 
-                                    <img src="{{$blog->author()->profile_photo_url}}"
+                                    <img src="{{ $blog->author()->profile_photo_url }}"
                                         class="bg-gray-50 rounded-full w-6 h-6 rounded-full mr-3" />
 
                                 </a>
 
-                                <a href="/profile/user/{{$blog->author()->username}}" class="hover:underline">
+                                <a href="/profile/user/{{ $blog->author()->username }}" class="hover:underline">
                                     <span class="mr-5">{{ $blog->author()->name }}</span>
                                 </a>
                             </div>
@@ -59,7 +59,7 @@
                                 </span>
                                 <span class="text-sm flex items-center space-x-2">
                                     <x-heroicon-o-eye class="w-4 h-4 text-blue-300" />
-                                    {{ (views($blog)->count()+57) }}
+                                    {{ views($blog)->count() + 57 }}
                                 </span>
                                 {{-- Likes --}}
                                 <livewire:like-blog :blog="$blog" />
@@ -85,16 +85,14 @@
                                         <span class="uppercase text-gray-500">Share</span>
 
                                         <a class="text-gray-300 hover:text-twitter" target="_blank" rel="noopener"
-                                            aria-label="Share on Twitter"
-                                            href="">
+                                            aria-label="Share on Twitter" href="">
                                             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                                                 <path
                                                     d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z" />
                                             </svg> </a>
 
                                         <a class="text-gray-300 hover:text-facebook" target="_blank" rel="noopener"
-                                            aria-label="Share on Facebook"
-                                            href="">
+                                            aria-label="Share on Facebook" href="">
                                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 fill="currentColor">
                                                 <path fill="currentColor" fill-rule="evenodd"
@@ -103,8 +101,7 @@
                                             </svg> </a>
 
                                         <a class="text-gray-300 hover:text-linkedin" target="_blank" rel="noopener"
-                                            aria-label="Share on LinkedIn"
-                                            href="">
+                                            aria-label="Share on LinkedIn" href="">
                                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 fill="currentColor">
                                                 <path fill="currentColor"
@@ -137,11 +134,55 @@
                     </div>
 
                 </div>
+
+                <br>
+                <h2 class="mb-0 text-sm font-bold uppercase">Comentários</h2>
+
+                @auth
+                <br>
+                    <div class="p-5 space-y-4 bg-white shadow">
+                        <h2 class="text-gray-500">Poste sua resposta</h2>
+                        <x-form action="{{ route('repliesblog.store') }}">
+                            <div>
+                                <input type="text" name="body"
+                                    class="w-full bg-gray-200 border-none shadow-inner focus:ring-blue-400" />
+                                <x-form.error for="body" />
+
+                                <input type="hidden" name="replyable_id" value="{{ $blog->id() }}">
+                                <x-form.error for="replyable_id" />
+                                <input type="hidden" name="replyable_type" value="blog">
+                                <x-form.error for="replyable_type" />
+
+                            </div>
+                           
+                            <div class="grid mt-4">
+                                {{-- Button --}}
+                                <x-buttons.primary class="justify-self-end">
+                                    {{ __('Postar') }}
+                                    </x-buttons.primary>
+                            </div>
+                        </x-form>
+                    </div>
+                @else
+                <br>
+                    <div class="flex justify-between p-4 text-gray-700 bg-blue-200 rounded">
+                        <h2>Por favor, faça o login para deixar sua resposta.</h2>
+                        <a href="{{ route('login') }}">Login</a>
+                    </div>
+                @endauth
+                <br>
+                @foreach ($blog->replies() as $reply)
+                    <livewire:reply.upblog :reply="$reply" :wire:key="$reply->id()" />
+                @endforeach
+
+
+
+         
+
             </div>
-        </article>
     </div>
+    </article>
 
 
 
-
- </x-app-layout>
+    </x-app-layout>

@@ -22,13 +22,13 @@ class HomeController extends Controller
 
         //contagem no site
         $site_count = DB::table('site_count')->limit(1)->get();
-        dump($site_count[0]->replies);
-        $topics = Thread::count();
-        $users = User::count();
-        $replies = Reply::count();
+       // $count= $site_count[0]->replies);
+        $topics = $site_count[0]->threads;
+        $users = $site_count[0]->users;
+        $replies = $site_count[0]->replies;
 
 
         //dump($users, $topics,  $replies );
-       return view('home.index', compact('users', 'topics', 'replies', 'newblog', 'newtopico'));
+       return view('home.index', compact('users', 'topics', 'replies', 'newblog', 'newtopico', 'site_count'));
     }
 }

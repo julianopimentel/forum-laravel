@@ -10,6 +10,7 @@ use App\Http\Controllers\Pages\ThreadController;
 use App\Http\Controllers\Pages\ProfileController;
 use App\Http\Controllers\Dashboard\NotificationController;
 use App\Http\Controllers\Pages\BlogController;
+use App\Http\Controllers\Pages\BlogReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,15 @@ Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
     Route::group(['as' => 'tags.'], function () {
         Route::get('/{tag:slug}', [TagController::class, 'indexForum'])->name('indexForum');
     });
+});
+
+Route::group(['prefix' => 'repliesblog', 'as' => 'repliesblog.'], function () {
+    /* Name: Replies
+     * Url: /replies/*
+     * Route: replies.*
+     */
+    Route::post('/', [BlogReplyController::class, 'store'])->name('store');
+    Route::get('reply/{id}/{type}', [BlogReplyController::class, 'redirect'])->name('replyAble');
 });
 
 Route::group(['prefix' => 'replies', 'as' => 'replies.'], function () {

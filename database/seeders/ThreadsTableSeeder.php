@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Models\Blog;
 use Illuminate\Database\Seeder;
 
 class ThreadsTableSeeder extends Seeder
@@ -22,5 +23,7 @@ class ThreadsTableSeeder extends Seeder
         Reply::factory()->create(['author_id' => 3, 'replyable_id' => 1]);
         Reply::factory()->create(['author_id' => 2, 'replyable_id' => 2]);
         Reply::factory()->create(['author_id' => 3, 'replyable_id' => 2]);
+
+        Blog::factory()->count(20)->create(['author_id' => 1]);
     }
 }

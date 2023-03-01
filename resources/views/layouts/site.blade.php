@@ -16,6 +16,8 @@
 
     <link rel="preload" as="style" href="{{ asset('css/custom.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
 
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
@@ -28,6 +30,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap" rel="stylesheet">
 
+@livewireStyles
+
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}" defer></script>
+
 
 
 <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
@@ -35,12 +42,9 @@
 
 </head>
 
-<body class="home font-sans bg-white antialiased" :class="{ 'overflow-hidden': lockScroll }" x-data="{ lockScroll: false, activeModal: false }"
-    @keyup.escape="activeModal = false">
-
+<body class="home font-sans bg-white antialiased" class="overflow-hidden:lockScroll">
     <nav class="">
-        <div class="container mx-auto text-gray-800 lg:block lg:py-8" x-data="navConfig()"
-            @click.outside="nav = false">
+        <div class="container mx-auto text-gray-800 lg:block lg:py-8">
             <div class="block bg-white 2xl:-mx-10">
                 <div class="lg:px-4 lg:flex">
                     <div class="block lg:flex lg:items-center lg:shrink-0">
@@ -52,13 +56,7 @@
                             </a>
 
                             <div class="flex lg:hidden">
-                                <button @click="showSearch($event)">
-                                    <svg class="w-6 h-6 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                                    </svg> </button>
-
+ 
                                 <button @click="nav = !nav">
                                     <svg x-show="!nav" class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -210,7 +208,7 @@
 
 
 
-    <div class="bg-gray-900 text-white mt-14 lg:mt-40">
+    <div class="bg-gray-900 text-white">
         <div class="container mx-auto pt-7 pb-8 lg:pt-20 lg:px-16">
             <div class="mx-4 md:mx-0">
                 <div class="flex flex-col pb-8 mb-8 border-b lg:pb-16 border-gray-800 lg:flex-row">
@@ -309,10 +307,8 @@
 
 
 </body>
-    <!-- Fathom - beautiful, simple website analytics -->
-    <script src="https://boom.laravel.io/script.js" site="UXCUXOED" defer data-canonical="false"></script>
-    <!-- / Fathom -->
+@livewireScripts
 
-    <style >[wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {display:none;}[wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {animation-duration: 50000s;animation-name: livewireautofill;}@keyframes livewireautofill { from {} }</style>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </html>

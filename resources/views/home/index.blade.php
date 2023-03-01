@@ -38,6 +38,7 @@
                     </div>
                 </div>
 
+                <!--
                 <div class="lg:w-1/2">
                     <div class="flex flex-col w-full" x-data="{ active: false }">
                         <div class="flex" style="margin-left: 134px;">
@@ -4660,9 +4661,11 @@
                     </div>
                 </div>
             </div>
+             /Head section -->
+
         </div>
     </section>
-    <!-- /Head section -->
+    
 
 
 

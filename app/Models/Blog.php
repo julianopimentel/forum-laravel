@@ -62,6 +62,7 @@ class Blog extends Model implements ReplyAble, SubscriptionAble, Viewable, Audit
         return $this->title();
     }
 
+
     public function id(): int
     {
         return $this->id;

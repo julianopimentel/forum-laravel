@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
 use App\Http\Requests\BlogStoreRequest;
 use App\Jobs\BlogThread;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
 
 class BlogController extends Controller
 {
@@ -22,14 +23,14 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
-        $threads = Blog::orderBy('id', 'desc');
+        $threads = Blog::orderBy('id', 'desc')->paginate(5);
 
         if (request('search')) {
             $threads->category->where('title', 'Like', '%' . request('search') . '%');
         }
 
         return view('home.blog.blog', [
-            'threads' => $threads->paginate(10),
+            'threads' => $threads,
             'categories'    => Category::all(),
         ]);
     }
@@ -44,9 +45,9 @@ class BlogController extends Controller
 
     public function store(BlogStoreRequest $request)
     {
-        $this->dispatchSync(BlogThread::fromRequest($request));
+         $this->dispatchSync(BlogThread::fromRequest($request));
 
-        return redirect()->route('threads.index')->with('success', 'Thread created!');
+        return redirect()->route('home.index')->with('success', 'Thread created!');
     }
 
     public function show(Category $category, Blog $blog)
@@ -69,7 +70,7 @@ class BlogController extends Controller
         $oldTags = $thread->tags()->pluck('id')->toArray();
         $selectedCategory = $thread->category;
 
-        return view('pages.threads.edit', [
+        return view('home.blog.edit', [
             'thread'            => $thread,
             'tags'              => Tag::all(),
             'oldTags'           => $oldTags,
@@ -84,7 +85,7 @@ class BlogController extends Controller
 
         $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
 
-        return redirect()->route('threads.index')->with('success', 'Thread Updated!');
+        return redirect()->route('blog.index')->with('success', 'Thread Updated!');
     }
 
 }

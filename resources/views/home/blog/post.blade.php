@@ -1,13 +1,12 @@
 <x-site-layout>
 
 
-            <div class="w-full bg-center bg-cover bg-gray-800">
-                <div class="container mx-auto">
-                    <div class="px-4 lg:px-0 lg:mx-48">
+    <main class="grid grid-cols-3 gap-8 mt-8 wrapper">
+
 
 
         <section class="flex flex-col col-span-3 gap-y-4">
-            <small class="text-sm text-gray-400">Cadastrar novo artigo</small>
+            <small class="text-sm text-gray-400">Blog > Criar</small>
 
             <article class="p-5 bg-white shadow">
                 <div class="w-full">
@@ -55,15 +54,14 @@
                                 </div>
 
                                 {{-- Button --}}
-                                <x-buttons.secondary>
+                                <x-buttons.primary>
                                     {{ __('Salvar') }}
-                                </x-buttons.secondary>
+                                </x-buttons.primary>
                         </x-form>
                     </div>
-             
-         
-                    </div>
                 </div>
-            </div>
+            </article>
+        </section>
+    </main>
 
 </x-site-layout>
