@@ -69,6 +69,27 @@
         </div>
         @endif
 
+        @if(auth()->user()->isAdmin())
+        {{-- Tags --}}
+        <div>
+            <x-sidenav.title>
+                {{ __('Blog') }}
+            </x-sidenav.title>
+            <div>
+                <x-sidenav.link href="{{ route('admin.blog.index') }}" :active="request()->routeIs('admin.blog.index')">
+                    <x-zondicon-view-tile class="w-3 text-green-400" />
+                    <span>{{ __('Index') }}</span>
+                </x-sidenav.link>
+            </div>
+            <div>
+                <x-sidenav.link href="{{ route('admin.blog.create') }}" :active="request()->routeIs('admin.blog.create')">
+                    <x-zondicon-compose class="w-3 text-green-400" />
+                    <span>{{ __('Create') }}</span>
+                </x-sidenav.link>
+            </div>
+        </div>
+        @endif
+
         {{-- Threads --}}
         <div>
             <x-sidenav.title>

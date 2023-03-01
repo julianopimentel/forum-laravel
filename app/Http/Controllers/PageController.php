@@ -27,4 +27,14 @@ class PageController extends Controller
     {
         return view('admin.threads.index');
     }
+
+    public function blogIndex()
+    {
+        return view('admin.blog.index');
+    }
+
+    public function blogCreate()
+    {
+        return view('admin.blog.create');
+    }
 }

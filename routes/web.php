@@ -103,6 +103,7 @@ Route::get('dashboard/users', [PageController::class, 'users'])->name('users');
 Route::get('/dashboard/categories/index', [PageController::class, 'categoriesIndex'])->name('categories.index');
 Route::get('/dashboard/categories/create', [PageController::class, 'categoriesCreate'])->name('categories.create');
 
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

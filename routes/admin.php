@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\DashboardController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -33,5 +34,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/edit/{tag:slug}', [TagController::class, 'edit'])->name('edit');
         Route::put('/{tag:slug}', [TagController::class, 'update'])->name('update');
         Route::delete('/{tag:slug}', [TagController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+        Route::get('/', [BlogController::class, 'index'])->name('index');
+        Route::get('/create', [BlogController::class, 'create'])->name('create');
+        Route::post('/', [BlogController::class, 'store'])->name('store');
+        Route::get('/edit/{category:slug}', [BlogController::class, 'edit'])->name('edit');
+        Route::put('/{category:slug}', [BlogController::class, 'update'])->name('update');
+        Route::delete('/{category:slug}', [BlogController::class, 'destroy'])->name('delete');
     });
 });
