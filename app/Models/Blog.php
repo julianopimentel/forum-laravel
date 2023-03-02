@@ -34,6 +34,7 @@ class Blog extends Model implements ReplyAble, SubscriptionAble, Viewable, Audit
 
     protected $fillable = [
         'title',
+        'content',
         'body',
         'slug',
         'category_id',
@@ -76,6 +77,11 @@ class Blog extends Model implements ReplyAble, SubscriptionAble, Viewable, Audit
     public function body(): string
     {
         return $this->body;
+    }
+
+    public function content(): string
+    {
+        return $this->content;
     }
 
     public function slug(): string

@@ -35,20 +35,7 @@ class BlogController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return view('home.blog.post', [
-            'categories'    => Category::all(),
-            'tags'          => Tag::all(),
-        ]);
-    }
 
-    public function store(BlogStoreRequest $request)
-    {
-         $this->dispatchSync(BlogThread::fromRequest($request));
-
-        return redirect()->route('home.index')->with('success', 'Thread created!');
-    }
 
     public function show(Category $category, Blog $blog)
     {
@@ -61,31 +48,6 @@ class BlogController extends Controller
             ->record();
 
         return view('home.blog.blogShow', compact('blog', 'category', 'categories'));
-    }
-
-    public function edit(Blog $thread)
-    {
-        $this->authorize(ThreadPolicy::UPDATE, $thread);
-
-        $oldTags = $thread->tags()->pluck('id')->toArray();
-        $selectedCategory = $thread->category;
-
-        return view('home.blog.edit', [
-            'thread'            => $thread,
-            'tags'              => Tag::all(),
-            'oldTags'           => $oldTags,
-            'categories'        => Category::all(),
-            'selectedCategory'  => $selectedCategory,
-        ]);
-    }
-
-    public function update(BlogStoreRequest $request, Blog $thread)
-    {
-        $this->authorize(ThreadPolicy::UPDATE, $thread);
-
-        $this->dispatchSync(UpdateThread::fromRequest($thread, $request));
-
-        return redirect()->route('blog.index')->with('success', 'Thread Updated!');
     }
 
 }

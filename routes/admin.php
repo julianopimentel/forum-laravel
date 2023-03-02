@@ -40,8 +40,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/', [BlogController::class, 'index'])->name('index');
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/', [BlogController::class, 'store'])->name('store');
-        Route::get('/edit/{category:slug}', [BlogController::class, 'edit'])->name('edit');
-        Route::put('/{category:slug}', [BlogController::class, 'update'])->name('update');
-        Route::delete('/{category:slug}', [BlogController::class, 'destroy'])->name('delete');
+        Route::get('/edit/{blog:slug}', [BlogController::class, 'edit'])->name('edit');
+        Route::put('/{blog:slug}', [BlogController::class, 'update'])->name('update');
+        Route::delete('/{blog:slug}', [BlogController::class, 'destroy'])->name('delete');
     });
 });

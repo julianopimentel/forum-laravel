@@ -128,7 +128,11 @@
                         <div x-data="{}" x-init="$nextTick(function() { highlightCode($el); })"
                             class="prose prose-lg text-gray-800 prose-lio">
                             <div>
-                                {{ $blog->body() }}
+
+                                @php
+                                    echo $blog->body;
+                                @endphp
+
                             </div>
                         </div>
                     </div>
@@ -139,7 +143,7 @@
                 <h2 class="mb-0 text-sm font-bold uppercase">Comentários</h2>
 
                 @auth
-                <br>
+                    <br>
                     <div class="p-5 space-y-4 bg-white shadow">
                         <h2 class="text-gray-500">Poste sua resposta</h2>
                         <x-form action="{{ route('repliesblog.store') }}">
@@ -154,17 +158,17 @@
                                 <x-form.error for="replyable_type" />
 
                             </div>
-                           
+
                             <div class="grid mt-4">
                                 {{-- Button --}}
                                 <x-buttons.primary class="justify-self-end">
                                     {{ __('Postar') }}
-                                    </x-buttons.primary>
+                                </x-buttons.primary>
                             </div>
                         </x-form>
                     </div>
                 @else
-                <br>
+                    <br>
                     <div class="flex justify-between p-4 text-gray-700 bg-blue-200 rounded">
                         <h2>Por favor, faça o login para deixar sua resposta.</h2>
                         <a href="{{ route('login') }}">Login</a>
@@ -177,7 +181,7 @@
 
 
 
-         
+
 
             </div>
     </div>

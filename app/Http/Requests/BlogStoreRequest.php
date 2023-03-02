@@ -26,7 +26,7 @@ class BlogStoreRequest extends FormRequest
     {
         return [
             'title'     => ['required', 'max:60', 'min:5'],
-            'body'      => ['required', 'max:300', 'min:5'],
+            'body'      => ['required', 'min:5'],
             'category'  => ['required'],
             'tags'      => ['array'],
             'tags.*'    => ['exists:tags,id'],

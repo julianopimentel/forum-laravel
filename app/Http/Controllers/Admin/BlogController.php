@@ -8,7 +8,13 @@ use Illuminate\Http\Request;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Authenticate;
+use App\Http\Requests\BlogStoreRequest;
+use App\Jobs\BlogThread;
+use App\Jobs\UpdateBlog;
+use App\Jobs\UpdateThread;
 use App\Models\Blog;
+use App\Models\Tag;
+use App\Policies\BlogPolicy;
 
 class BlogController extends Controller
 {
@@ -20,54 +26,61 @@ class BlogController extends Controller
     public function index()
     {
         return view('admin.blog.index', [
-            'blog'    => Blog::all(),
+            'blogs'    => Blog::orderBy('id', 'desc')->paginate(10),
             'categories'    => Category::all(),
         ]);
     }
 
     public function create()
     {
-        return view('admin.blog.create');
+        return view('admin.blog.create', [
+            'categories'    => Category::all(),
+            'tags'          => Tag::all(),
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(BlogStoreRequest $request)
     {
-        $this->validate($request, [
-            'name'  => ['required', 'unique:categories'],
-        ]);
 
-        Category::create([
-            'name'  => $request->name,
-            'slug'  => Str::slug($request->name),
-        ]);
-
-        return redirect()->route('admin.blog.index')->with('success', 'Category Created');
+        $this->dispatchSync(BlogThread::fromRequest($request));
+        return redirect()->route('admin.blog.index')->with('success', 'Tópico criado!');
     }
 
-    public function edit(Category $category)
+    public function edit(Blog $blog)
     {
-        return view('admin.blog.edit', compact('category'));
-    }
 
-    public function update(Request $request, Category $category)
-    {
-        $this->validate($request, [
-            'name'  => ['required', 'unique:categories'],
+
+        $this->authorize(BlogPolicy::UPDATE, $blog);
+
+        $oldTags = $blog->tags()->pluck('id')->toArray();
+        $selectedCategory = $blog->category;
+
+
+        return view('admin.blog.edit', [
+            'blog'            => $blog,
+            'tags'              => Tag::all(),
+            'oldTags'           => $oldTags,
+            'categories'        => Category::all(),
+           'selectedCategory'  => $selectedCategory,
         ]);
 
-        $category->update([
-            'name'  => $request->name,
-            'slug'  => Str::slug($request->name),
-        ]);
-
-        return redirect()->route('admin.blog.index')->with('success', 'Category Updated');
     }
 
 
-    public function destroy(Category $category)
+    public function update(BlogStoreRequest $request, Blog $blog)
     {
-        $category->delete();
+        $this->authorize(BlogPolicy::UPDATE, $blog);
 
-        return redirect()->route('admin.blog.index')->with('success', 'Category Deleted');
+        $this->dispatchSync(UpdateBlog::fromRequest($blog, $request));
+
+       return redirect()->route('admin.blog.index')->with('success', 'Tópico atualizado!');
+    }
+
+
+    public function destroy(Blog $blog)
+    {
+        $blog->delete();
+
+        return redirect()->route('admin.blog.index')->with('danger', 'Tópico deletado');
     }
 }
